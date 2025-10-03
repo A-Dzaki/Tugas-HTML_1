@@ -1,0 +1,10 @@
+body {
+    background-color: rgb(187, 247, 247);
+    font-family: sans-serif;
+}
+h1 {
+    color: blue;
+}
+p {
+    margin: 3cm, 4cm, 3cm, 4cm;
+}
