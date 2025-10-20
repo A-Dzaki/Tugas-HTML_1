@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
@@ -9,18 +9,15 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
-    <head>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="#">Ahmad Dzaki Zayyan Sugianto</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
-    </head>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Ahmad Dzaki Zayyan Sugianto</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
 
     <!-- main body -->
     <main class="container flex-grow-1 my-4">
@@ -33,30 +30,115 @@
                         <p class="card-text">
                             Halo, saya <strong>Ahmad Dzaki Zayyan Sugianto</strong>. Saya mahasiswa aktif semester 5 di
                             Telkom
-                            University Surabaya jurusan Teknologi Informasi.
-                            Saya memiliki minat besar pada pengembangan aplikasi web dan.
+                            University Surabaya jurusan Teknologi Informasi. Saya memiliki minat besar pada pengembangan
+                            aplikasi web dan.
                         </p>
-
                     </div>
                 </div>
             </div>
             <!-- Kolom kanan (gambar) -->
             <div class="col-md-6 mb-4 text-center">
                 <div class="card h-100 shadow-sm border-2">
-                    <img src="download.jpg" class="img-fluid rounded" alt="Foto Profil">
+                    <img src="download.jpg" class="img-fluid rounded-top" alt="Foto Profil">
                     <div class="card-body">
-                        <p class="card-text text-muted">Hobi saya adalah menonton film</p>
+                        <p class="card-text text-muted mb-0">Hobi saya adalah menonton film</p>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-    <!-- footer -->
 
+        <!-- Formulir di dalam Card Bootstrap -->
+        <section class="mt-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card shadow-sm border-2">
+                        <div class="card-header bg-white">
+                            <h3 class="h4 mb-0">Formulir Pendaftaran</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="formSaya" novalidate>
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" id="nama" class="form-control" placeholder="Masukkan nama">
+                                    <div class="form-text text-danger d-none" id="errNama">Nama wajib diisi.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" id="email" class="form-control" placeholder="nama@domain.com">
+                                    <div class="form-text text-danger d-none" id="errEmail">Format email tidak valid.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" id="password" class="form-control"
+                                        placeholder="Minimal 8 karakter">
+                                    <div class="form-text text-danger d-none" id="errPass">Password minimal 8 karakter.
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100">Kirim</button>
+                                <div class="alert alert-success mt-3 d-none" id="pesan">Berhasil! Data siap dikirim.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer -->
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <p class="mb-0">Made by Dzaki 2025</p>
     </footer>
+
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        var form = document.getElementById("formSaya");
+        var nama = document.getElementById("nama");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var pesan = document.getElementById("pesan");
+
+        var errNama = document.getElementById("errNama");
+        var errEmail = document.getElementById("errEmail");
+        var errPass = document.getElementById("errPass");
+
+        function show(el) { el.classList.remove('d-none'); }
+        function hide(el) { el.classList.add('d-none'); }
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            hide(pesan);
+
+
+            hide(errNama); hide(errEmail); hide(errPass);
+
+            var namaValue = nama.value.trim();
+            var emailValue = email.value.trim();
+            var passwordValue = password.value;
+
+            var ok = true;
+
+            if (namaValue === "") { show(errNama); ok = false; }
+
+            if (emailValue.indexOf("@") < 1 || emailValue.indexOf(".") < emailValue.indexOf("@") + 2) {
+                show(errEmail); ok = false;
+            }
+
+            if (passwordValue.length < 8) { show(errPass); ok = false; }
+
+            if (ok) {
+                show(pesan);
+                console.log("Nama:", namaValue);
+                console.log("Email:", emailValue);
+                console.log("Password:", passwordValue);
+            }
+        });
+    </script>
 </body>
 
 </html>
